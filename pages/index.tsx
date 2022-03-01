@@ -1,8 +1,17 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Header from '../components/Header'
+import type { InferGetServerSidePropsType, NextPage } from 'next';
+import Head from 'next/head';
+import Header from '../components/Header';
+import { sanityClient } from '../config/sanity';
+import { Post } from '../typings';
 
-const Home: NextPage = () => {
+interface Props {
+  posts: [Post];
+}
+
+const Home: NextPage<Props> = ({
+  posts,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  console.log('Postssss', posts);
   return (
     <div className="mx-auto max-w-7xl">
       <Head>
@@ -35,7 +44,31 @@ const Home: NextPage = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export const getServerSideProps = async () => {
+  const query = `
+    *[_type == 'post']{
+      _id,
+      title,
+      slug,
+      description,
+      author -> {
+        name,
+        image,
+      },
+      mainImage,
+    }
+  `;
+
+  const posts = await sanityClient.fetch(query);
+
+  return {
+    props: {
+      posts,
+    },
+  };
+};
+
+export default Home;
