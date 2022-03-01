@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2018",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -11,8 +14,11 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "pretty": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "sourceMap": true,
     "jsx": "preserve",
     "incremental": true,
     "noUnusedLocals": true, // Report errors on unused locals
