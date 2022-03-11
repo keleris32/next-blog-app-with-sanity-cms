@@ -9,7 +9,7 @@ interface PostsProps {
 
 const Posts = ({ posts }: PostsProps) => {
   return (
-    <section>
+    <section className="grid grid-cols-1 gap-3 p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
       {posts.map((post) => (
         <Link key={post._id} href={`/post/${post.slug.current}`}>
           <div>
@@ -18,10 +18,12 @@ const Posts = ({ posts }: PostsProps) => {
               src={urlFor(post.mainImage).url()!}
               alt="Blog post image"
             />
-            <div className="flex justify-between bg-white p-5">
+            <div className="flex items-center justify-between bg-red-900 p-5">
               <div>
-                <p>{post.title}</p>
-                <p>
+                <p className="mb-2">
+                  <strong>{post.title}</strong>
+                </p>
+                <p className="pr-2 text-sm">
                   {post.description} by {post.author.name}
                 </p>
               </div>
