@@ -8,7 +8,6 @@ import { Post } from '../typings';
 const Home = ({
   posts,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log('Postssss', posts);
   return (
     <div className="mx-auto max-w-7xl">
       <Head>
