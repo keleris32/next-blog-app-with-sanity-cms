@@ -1,14 +1,13 @@
+import { InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import { Hero, Posts } from '../components';
 import Header from '../components/Header';
 import { sanityClient } from '../config/sanity';
 import { Post } from '../typings';
 
-interface Props {
-  posts: [Post];
-}
-
-const Home = ({ posts }: Props) => {
+const Home = ({
+  posts,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   console.log('Postssss', posts);
   return (
     <div className="mx-auto max-w-7xl">
@@ -41,7 +40,7 @@ export const getServerSideProps = async () => {
     }
   `;
 
-  const posts = await sanityClient.fetch(query);
+  const posts: [Post] = await sanityClient.fetch(query);
 
   return {
     props: {
