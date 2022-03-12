@@ -12,18 +12,16 @@ const Posts = ({ posts }: PostsProps) => {
     <section className="grid grid-cols-1 gap-3 p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
       {posts.map((post) => (
         <Link key={post._id} href={`/post/${post.slug.current}`}>
-          <div>
+          <div className="group cursor-pointer overflow-hidden rounded-lg border">
             <img
-              className="h-auto w-auto"
+              className="h-60 w-full object-cover transition-transform duration-200 ease-in-out group-hover:scale-105"
               src={urlFor(post.mainImage).url()!}
               alt="Blog post image"
             />
-            <div className="flex items-center justify-between bg-red-900 p-5">
+            <div className="flex items-center justify-between bg-white p-5">
               <div>
-                <p className="mb-2">
-                  <strong>{post.title}</strong>
-                </p>
-                <p className="pr-2 text-sm">
+                <p className="mb-1 font-bold">{post.title}</p>
+                <p className="pr-2 text-xs">
                   {post.description} by {post.author.name}
                 </p>
               </div>
