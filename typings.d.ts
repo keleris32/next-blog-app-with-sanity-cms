@@ -1,6 +1,6 @@
 export interface Post {
   _id: string;
-  _createdAt?: string;
+  _createdAt?: string | number | date;
   title: string;
   author: {
     name: string;
